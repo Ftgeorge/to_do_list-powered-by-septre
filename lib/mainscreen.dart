@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import 'components/todo_tile.dart';
 
@@ -12,6 +10,13 @@ class Mainscreen extends StatefulWidget {
 }
 
 class _MainscreenState extends State<Mainscreen> {
+
+
+    List ToDoList =[
+      ['Sleep Now', false],
+      ["Do Exercise",false]
+    ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,10 +36,11 @@ class _MainscreenState extends State<Mainscreen> {
         ),
         elevation: 0,
       ),
-      body: ListView(
-        children: [
-          TodoTile(),
-        ],
+      body: ListView.builder(
+        itemCount: ToDoList.length,
+        itemBuilder: (context, index) {
+          return TodoTile(Completedtask: Completedtask, NameofTask: NameofTask, onChanged: onChanged)
+        } ,
       ),
     );
   }
