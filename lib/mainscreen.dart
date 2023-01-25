@@ -16,7 +16,23 @@ class _MainscreenState extends State<Mainscreen> {
       backgroundColor: Colors.white54,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text('To Do'),
+        title: Center(
+          child: const Text(
+            'TO DO',
+            style: TextStyle(
+              fontSize: 20,
+              fontFamily: 'Oxygen',
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        elevation: 0,
+      ),
+      body: ListView(
+        children: [
+          ToDo(),
+        ],
       ),
     );
   }
