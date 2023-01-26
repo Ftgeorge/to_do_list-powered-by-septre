@@ -15,7 +15,7 @@ final _controller = TextEditingController();
 
 class _MainscreenState extends State<Mainscreen> {
   List ToDoList = [
-    ['Sleep Now', false],
+    ['Make Tutorial', false],
     ["Do Exercise", false]
   ];
 
@@ -43,6 +43,12 @@ class _MainscreenState extends State<Mainscreen> {
             Cancel: () => Navigator.of(context).pop(),
           );
         });
+  }
+
+  void deletetask(int index) {
+    setState(() {
+      ToDoList.removeAt(index);
+    });
   }
 
   @override
@@ -75,6 +81,7 @@ class _MainscreenState extends State<Mainscreen> {
             Completedtask: ToDoList[index][1],
             NameofTask: ToDoList[index][0],
             onChanged: (value) => checkBoxChanged(value, index),
+            deletetodo: (context) => deletetask,
           );
         },
       ),
