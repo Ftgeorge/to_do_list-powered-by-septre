@@ -10,6 +10,9 @@ class Mainscreen extends StatefulWidget {
   State<Mainscreen> createState() => _MainscreenState();
 }
 
+//controller
+final _controller = TextEditingController();
+
 class _MainscreenState extends State<Mainscreen> {
   List ToDoList = [
     ['Sleep Now', false],
@@ -22,11 +25,23 @@ class _MainscreenState extends State<Mainscreen> {
     });
   }
 
+  void saveNewTask() {
+    setState(() {
+      ToDoList.add([_controller.text, false]);
+      _controller.clear();
+    });
+    Navigator.of(context).pop();
+  }
+
   void addTask() {
     showDialog(
         context: context,
         builder: (context) {
-          return DialogBox();
+          return DialogBox(
+            controller: _controller,
+            Save: saveNewTask,
+            Cancel: () => Navigator.of(context).pop(),
+          );
         });
   }
 
