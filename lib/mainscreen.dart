@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:to_do_list/components/alert_box.dart';
 import 'package:to_do_list/data/database.dart';
-
 import 'components/todo_tile.dart';
 
 class Mainscreen extends StatefulWidget {
@@ -12,8 +12,20 @@ class Mainscreen extends StatefulWidget {
 }
 
 class _MainscreenState extends State<Mainscreen> {
-  final _mybox = Hive.openBox('myBox');
+  final _mybox = Hive.box('myBox');
   ToDoDataBase db = ToDoDataBase();
+
+  @override
+  void initState() {
+    //create default data if user opens the app first
+    if (_mybox.get("TODOLIST") == null) {
+      db.createInitialData();
+    } else {
+      db.loadData();
+    }
+
+    super.initState();
+  }
 
   final _controller = TextEditingController();
 
@@ -21,6 +33,7 @@ class _MainscreenState extends State<Mainscreen> {
     setState(() {
       db.ToDoList[index][1] = !db.ToDoList[index][1];
     });
+    db.updateDatabase();
   }
 
   void saveNewTask() {
@@ -29,6 +42,7 @@ class _MainscreenState extends State<Mainscreen> {
       _controller.clear();
     });
     Navigator.of(context).pop();
+    db.updateDatabase();
   }
 
   void addTask() {
@@ -47,6 +61,7 @@ class _MainscreenState extends State<Mainscreen> {
     setState(() {
       db.ToDoList.removeAt(index);
     });
+    db.updateDatabase();
   }
 
   @override
