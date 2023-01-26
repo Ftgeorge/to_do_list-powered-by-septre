@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_list/components/alert_box.dart';
 
 import 'components/todo_tile.dart';
 
@@ -21,6 +22,14 @@ class _MainscreenState extends State<Mainscreen> {
     });
   }
 
+  void addTask() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return DialogBox();
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +50,7 @@ class _MainscreenState extends State<Mainscreen> {
         elevation: 0,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: addTask,
         child: const Icon(Icons.add_task_outlined),
       ),
       body: ListView.builder(
