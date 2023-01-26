@@ -27,8 +27,8 @@ class _MainscreenState extends State<Mainscreen> {
       backgroundColor: Colors.white54,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Center(
-          child: const Text(
+        title: const Center(
+          child: Text(
             'TO DO',
             style: TextStyle(
               fontSize: 20,
@@ -39,6 +39,10 @@ class _MainscreenState extends State<Mainscreen> {
           ),
         ),
         elevation: 0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add_task_outlined),
       ),
       body: ListView.builder(
         itemCount: ToDoList.length,

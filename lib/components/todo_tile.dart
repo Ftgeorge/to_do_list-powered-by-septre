@@ -28,6 +28,9 @@ class TodoTile extends StatelessWidget {
                 fontFamily: 'Oxygen',
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
+                decoration: Completedtask
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
               ),
             ),
           ],
