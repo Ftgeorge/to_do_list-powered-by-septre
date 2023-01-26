@@ -10,10 +10,10 @@ class Mainscreen extends StatefulWidget {
   State<Mainscreen> createState() => _MainscreenState();
 }
 
-//controller
-final _controller = TextEditingController();
-
 class _MainscreenState extends State<Mainscreen> {
+  //controller
+  final _controller = TextEditingController();
+
   List ToDoList = [
     ['Make Tutorial', false],
     ["Do Exercise", false]
