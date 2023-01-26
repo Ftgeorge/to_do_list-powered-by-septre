@@ -10,12 +10,16 @@ class Mainscreen extends StatefulWidget {
 }
 
 class _MainscreenState extends State<Mainscreen> {
+  List ToDoList = [
+    ['Sleep Now', false],
+    ["Do Exercise", false]
+  ];
 
-
-    List ToDoList =[
-      ['Sleep Now', false],
-      ["Do Exercise",false]
-    ];
+  void checkBoxChanged(bool? value, int index) {
+    setState(() {
+      ToDoList[index][1] = !ToDoList[index][1];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +43,12 @@ class _MainscreenState extends State<Mainscreen> {
       body: ListView.builder(
         itemCount: ToDoList.length,
         itemBuilder: (context, index) {
-          return TodoTile(Completedtask: Completedtask, NameofTask: NameofTask, onChanged: onChanged)
-        } ,
+          return TodoTile(
+            Completedtask: ToDoList[index][1],
+            NameofTask: ToDoList[index][0],
+            onChanged: (value) => checkBoxChanged(value, index),
+          );
+        },
       ),
     );
   }
